@@ -33,14 +33,15 @@
 
 body { 
   font-family: IM Fell DW Pica SC, serif;
-  background: url("@{images}/trees.jpg") scroll repeat 50% 0;
-  background: url("@{images}/gradient-head.png") fixed repeat-x 0 0, 
-              url("@{images}/gradient-tail.png") fixed repeat-x 0 100%,
-              url("@{images}/trees.jpg") scroll repeat 50% 0;
-  // .transition(2s);
-
+  // background: url("@{images}/trees.jpg") scroll repeat 50% 0;
+  // background: url("@{images}/gradient-head.png") fixed repeat-x 0 0, 
+  //             url("@{images}/gradient-tail.png") fixed repeat-x 0 100%,
+  //             url("@{images}/trees.jpg") scroll repeat 50% 0;
   // .ie & { background: @green; }
   .selection(@base, darken(@base, 150));
+  background-color: @base;
+  .background-image(linear-gradient(left, fade(@black, 15%) 0%, fade(@black, 0%) 20%, fade(@black, 0%) 80%, fade(@black, 15%) 100%););
+  .transition(1s);
 }
 
 h1 { .font-size(20); }
@@ -177,6 +178,7 @@ section.slideshow {
         padding: 5px 20px;
         @background-image: linear-gradient(left, fade(@black, 60%) 0%, fade(@black, 60%) 85%, fade(@black, 0%) 100%);
         .background-image(@background-image);
+        // .background-image(linear-gradient(left, fade(@black, 60%) 0%, fade(@black, 60%) 85%, fade(@black, 0%) 100%));
 
         h2 {
           margin-top: 0;
@@ -209,30 +211,30 @@ img {
 
 // 480px wide
 .480() { 
-  body { background-color: blue; }
+  body { background-color: @pink; }
 }
 @media @480 { .480; } .ie { .480; }
 
 // 600px wide
 .600() { 
-  body { background-color: green; }
+  body { background-color: @purple; }
 }
 @media @600 { .600; } .ie { .600; }
 
 // 768px wide
 .768() { 
-  body { background-color: yellow; }
+  body { background-color: @green; }
 }
 @media @768 { .768; } .ie { .768; }
 
 // 992px wide
 .992() { 
-  body { background-color: orange; }
+  body { background-color: @pink; }
 }
 @media @992 { .992; } .ie { .992; }
 
 // 1382px wide
 .1382() { 
-  body { background-color: purple; }
+  body { background-color: @base; }
 }
 @media @1382 { .1382; } .ie { .1382; }
