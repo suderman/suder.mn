@@ -1,0 +1,238 @@
+/*!
+                             .o8
+                            "888
+   .oooo.o oooo  oooo   .oooo888   .ooooo.  oooo d8b  ooo. .oo.  .oo.   ooo. .oo.
+  d88(  "8 `888  `888  d88' `888  d88' `88b `888""8P  `888P"Y88bP"Y88b  `888P"Y88b
+  `"Y88b.   888   888  888   888  888ooo888  888       888   888   888   888   888
+  o.  )88b  888   888  888   888  888    .o  888  .o.  888   888   888   888   888
+  8""888P'  `V88V"V8P' `Y8bod88P" `Y8bod8P' d888b Y8P o888o o888o o888o o888o o888o
+
+*/
+@import "lib/normalize";
+@import "lib/lesshat";
+@import "base";
+
+// Fonts and Icons
+.font-face('BebasRegular', "/fonts/bebas/bebas-webfont");
+.font-face('IM Fell DW Pica SC', "/fonts/im-fell-dw-pica-sc/imfelldwpicasc-webfont");
+.font-face('Web Symbols Regular', "/fonts/web-symbols/websymbols-regular-webfont");
+.font-face('Modern Pictograms Normal', "/fonts/modernpics/modernpics-webfont");
+.font-face('FontAwesome', "/fonts/font-awesome/fontawesome-webfont");
+// @import "../fonts/font-awesome/font-awesome";
+
+// Colors
+@base: rgb(255, 240, 219);
+@pink: rgb(235, 218, 255);
+@purple: rgb(96, 27, 178);
+@brown: rgb(178, 147, 104);
+@green: rgb(92, 191, 120);
+
+// Make it pretty!
+@images: "../../images";
+
+
+body { 
+  font-family: IM Fell DW Pica SC, serif;
+  background: url("@{images}/trees.jpg") scroll repeat 50% 0;
+  background: url("@{images}/gradient-head.png") fixed repeat-x 0 0, 
+              url("@{images}/gradient-tail.png") fixed repeat-x 0 100%,
+              url("@{images}/trees.jpg") scroll repeat 50% 0;
+  // .transition(2s);
+
+  // .ie & { background: @green; }
+  .selection(@base, darken(@base, 150));
+}
+
+h1 { .font-size(20); }
+h2 {}
+h3 {}
+p { line-height: 1.5; margin-bottom: 10px; }
+a {}
+a:hover {}
+
+p.one {
+  font-family: FontAwesome;
+}
+p.two {
+  font-family: Modern Pictograms Normal;
+}
+p.three {
+  font-family: Web Symbols Regular;
+}
+
+header { 
+  width: 100%; 
+  margin: 0 auto; 
+  h1 { 
+    display: none;
+    margin: 0 auto; 
+    width: 100%;
+    height: 60px; 
+    @media @480 { height: 60px; }
+    @media @600 { width: 60px; }
+    .ie & { width: 591px; }
+    .background-size(95%);
+    .hide-text();
+  }
+  p { 
+    text-align: center;
+    margin: 0 auto;
+    .font-size(40);
+  }
+  ul { margin: 0 0 1em; }
+}
+
+nav[role=navigation] {
+  position: relative;
+  z-index: 20;
+  margin: 0 10px;
+  h1 { display: none; }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li { 
+      display: inline-block; 
+      white-space: nowrap;
+      width: 25%;
+      a { 
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        padding: 5px 5px 5px 0;
+        color: @base;
+        .font-size(20);
+        font-weight: bold;
+        background: @brown;
+        background: fade(@brown, 50%);
+        border: 1px solid spin(@brown, 0);
+        border-left-width: 0; 
+        // .transition(background-color 0.1s linear);
+        .transition(0.1s linear);
+        &:hover {
+          background: fade(darken(@brown, 10%), 50%);
+          background: @brown;
+          // .transform(scale(1.25,1.25));
+          .border-radius(0 0 1em 1em);
+          .font-size(20);
+          .transform(scale(1,1.25) translate(0px, 4px));
+          // height: 2em;
+          // padding-top: 10px;
+          // .transform(translate(10px, 10px));
+        }
+        &::before {
+          font-family: FontAwesome;
+          font-weight: normal;
+          font-style: normal;
+          display: inline-block;
+          text-decoration: inherit;
+          padding-right: 5px;
+        }
+        &.our-story::before { content: "\f02e"; }
+        &.wedding::before { content: "\f004"; }
+        &.registry::before { content: "\f06b"; }
+        &.rsvp::before { content: "\f0e0"; }
+      }
+      &:first-child a { border-left-width: 1px; }
+    }
+  
+  }
+}
+
+section.slideshow {
+  position: relative;
+  z-index: 10;
+  margin: 0 10px;
+  ol { 
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    .perspective(1000);
+    li {
+      position: absolute;
+      display: block;
+      background-repeat: repeat;
+      background-position: 40% 0;
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      .transition(0.5s linear);
+      .transform(rotate3D(1, 1, 0, 180deg));
+      .backface-visibility(hidden);
+
+      &.active { 
+        .transform(rotate3D(0, 0, 0, 0deg));
+      }
+
+      section { 
+        position: relative;
+        color: @white;
+        font-family: BebasRegular, sans-serif;
+
+        min-width: 200px;
+        max-width: 35%;
+        height: 100%;
+        padding: 5px 20px;
+        @background-image: linear-gradient(left, fade(@black, 60%) 0%, fade(@black, 60%) 85%, fade(@black, 0%) 100%);
+        .background-image(@background-image);
+
+        h2 {
+          margin-top: 0;
+          .font-size(36);
+          line-height: 1em;
+        }
+      }
+    }
+  }
+}
+
+img { 
+  .border-radius(50%);
+  // .border-top-left-radius(100% 100%);
+  // .border-top-right-radius(100% 100%);
+  // .border-bottom-left-radius(100% 100%);
+  // .border-bottom-right-radius(100% 100%);
+  margin: 10%;
+  width: 300px; 
+  height: 300px;
+  .rotate3d(0, 0, 1, 9deg);
+  .box-shadow(1em 1em 5em fade(@black, 70%));
+      // .transform(rotate3D(1, 1, 0, 40deg));
+}
+
+// Magical media queries
+@media print {
+  @import "lib/print";
+}
+
+// 480px wide
+.480() { 
+  body { background-color: blue; }
+}
+@media @480 { .480; } .ie { .480; }
+
+// 600px wide
+.600() { 
+  body { background-color: green; }
+}
+@media @600 { .600; } .ie { .600; }
+
+// 768px wide
+.768() { 
+  body { background-color: yellow; }
+}
+@media @768 { .768; } .ie { .768; }
+
+// 992px wide
+.992() { 
+  body { background-color: orange; }
+}
+@media @992 { .992; } .ie { .992; }
+
+// 1382px wide
+.1382() { 
+  body { background-color: purple; }
+}
+@media @1382 { .1382; } .ie { .1382; }
